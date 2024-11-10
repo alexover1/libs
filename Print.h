@@ -4,8 +4,12 @@
 #include <iostream>
 #include <thread>
 
+#ifndef SNPRINTF
+#ifndef STB_SPRINTF_IMPLEMENTATION
 #include "stb_sprintf.h"
-#define snprintf stbsp_snprintf
+#endif
+#define SNPRINTF stbsp_snprintf
+#endif
 
 struct String_Buffer {
     char *data;      // Pointer to start of data
@@ -21,7 +25,7 @@ inline T min(T x, T y)
 
 inline void sprint1(String_Buffer *buffer, const char *cstr)
 {
-    int n = snprintf(
+    int n = SNPRINTF(
                 buffer->data + buffer->length,
                 buffer->capacity - buffer->length,
                 "%s", cstr);
@@ -30,7 +34,7 @@ inline void sprint1(String_Buffer *buffer, const char *cstr)
 
 inline void sprint1(String_Buffer *buffer, char c)
 {
-    int n = snprintf(
+    int n = SNPRINTF(
                 buffer->data + buffer->length,
                 buffer->capacity - buffer->length,
                 "%c", c);
@@ -39,7 +43,7 @@ inline void sprint1(String_Buffer *buffer, char c)
 
 inline void sprint1(String_Buffer *buffer, int x)
 {
-    int n = snprintf(
+    int n = SNPRINTF(
                 buffer->data + buffer->length,
                 buffer->capacity - buffer->length,
                 "%d", x);
@@ -48,7 +52,7 @@ inline void sprint1(String_Buffer *buffer, int x)
 
 inline void sprint1(String_Buffer *buffer, long int x)
 {
-    int n = snprintf(
+    int n = SNPRINTF(
                 buffer->data + buffer->length,
                 buffer->capacity - buffer->length,
                 "%ld", x);
@@ -57,7 +61,7 @@ inline void sprint1(String_Buffer *buffer, long int x)
 
 inline void sprint1(String_Buffer *buffer, long long int x)
 {
-    int n = snprintf(
+    int n = SNPRINTF(
                 buffer->data + buffer->length,
                 buffer->capacity - buffer->length,
                 "%lld", x);
@@ -66,7 +70,7 @@ inline void sprint1(String_Buffer *buffer, long long int x)
 
 inline void sprint1(String_Buffer *buffer, unsigned x)
 {
-    int n = snprintf(
+    int n = SNPRINTF(
                 buffer->data + buffer->length,
                 buffer->capacity - buffer->length,
                 "%u", x);
@@ -75,7 +79,7 @@ inline void sprint1(String_Buffer *buffer, unsigned x)
 
 inline void sprint1(String_Buffer *buffer, long unsigned x)
 {
-    int n = snprintf(
+    int n = SNPRINTF(
                 buffer->data + buffer->length,
                 buffer->capacity - buffer->length,
                 "%lu", x);
@@ -84,7 +88,7 @@ inline void sprint1(String_Buffer *buffer, long unsigned x)
 
 inline void sprint1(String_Buffer *buffer, long long unsigned x)
 {
-    int n = snprintf(
+    int n = SNPRINTF(
                 buffer->data + buffer->length,
                 buffer->capacity - buffer->length,
                 "%llu", x);
@@ -93,7 +97,7 @@ inline void sprint1(String_Buffer *buffer, long long unsigned x)
 
 inline void sprint1(String_Buffer *buffer, float f)
 {
-    int n = snprintf(
+    int n = SNPRINTF(
                 buffer->data + buffer->length,
                 buffer->capacity - buffer->length,
                 "%f", f);
@@ -102,7 +106,7 @@ inline void sprint1(String_Buffer *buffer, float f)
 
 inline void sprint1(String_Buffer *buffer, double f)
 {
-    int n = snprintf(
+    int n = SNPRINTF(
                 buffer->data + buffer->length,
                 buffer->capacity - buffer->length,
                 "%f", f);
@@ -111,7 +115,7 @@ inline void sprint1(String_Buffer *buffer, double f)
 
 inline void sprint1(String_Buffer *buffer, bool b)
 {
-    int n = snprintf(
+    int n = SNPRINTF(
                 buffer->data + buffer->length,
                 buffer->capacity - buffer->length,
                 b ? "true" : "false");
